@@ -1,0 +1,19 @@
+version: '4.1'
+
+services:
+    rstudio:
+        image: rocker/verse:4.3.2
+        platform: linux/amd64
+        env_file:
+            - .env
+        ports:
+            - 8787:8787
+        environment:
+            - LOCALHOST_URL=http://localhost:8080/tmm-analytics
+        volumes:
+            - ./src/:/home/rstudio/src/
+            - rlib:/usr/local/lib/R
+
+volumes:
+    rlib:
+        external: true
