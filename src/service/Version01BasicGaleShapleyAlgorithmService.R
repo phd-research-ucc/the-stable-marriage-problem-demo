@@ -7,7 +7,7 @@
 #
 # Description:  Service that implements the basic Gale-Shapley Algorithm
 #
-# Location:     service/BasicGaleShapleyAlgorithm.R
+# Location:     service/Version01BasicGaleShapleyAlgorithm.R
 #
 
 
