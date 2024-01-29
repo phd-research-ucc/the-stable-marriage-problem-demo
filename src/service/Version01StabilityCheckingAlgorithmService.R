@@ -3,9 +3,10 @@
 # Version:      1.0
 # Author:       Oleksii Dovhaniuk
 # Created on:   2024-01-24
-# Updated on:   2024-01-24
+# Updated on:   2024-01-25
 #
-# Description:  Service that implements the basic Gale-Shapley Algorithm
+# Description:  Service that implements the basic stability checking
+#               algorithm
 #
 # Location:     service/Version01StabilityCheckingAlgorithmService.R
 #
@@ -21,7 +22,8 @@ library(tidyverse)
 # Functions --------------------------------------------------------------------
 
 # Function to check if there is a blocking pair
-has_blocking_pair <- function(man, woman, matching) {
+has_blocking_pair <- function(man_index, woman_index, matching, men_preferences, women_preferences) {
+  
   current_woman <- matching[man]
   current_man <- which(matching == woman)[1]
 
@@ -35,14 +37,16 @@ has_blocking_pair <- function(man, woman, matching) {
 }
 
 check_stability <- function(men_preferences, women_preferences, matching) {
+
   n <- nrow(men_preferences)
   
   # Check for blocking pairs in the matching
-  for (man in 1:n) {
-    woman <- matching[man]
-    
-    if (has_blocking_pair(man, woman, matching)) {
-    return(FALSE)  # Matching is not stable
+  for (m in 1:n) {
+    woman <- matching[m]
+    for (w in 1:which(man_preferences[m, ] == woman) ){
+      if (has_blocking_pair(m, w, matching, men_preferences, women_preferences)) {
+        return(FALSE)  # Matching is not stable
+      }
     }
   }
   
@@ -50,11 +54,16 @@ check_stability <- function(men_preferences, women_preferences, matching) {
 }
 
 # Example usage
-men_preferences <- matrix(c(2, 1, 2, 1, 1, 2, 1, 2), nrow = 4, byrow = TRUE)
-women_preferences <- matrix(c(1, 2, 2, 1, 2, 1, 1, 2), nrow = 4, byrow = TRUE)
+# men_preferences <- matrix(c(1, 2, 3, 1, 2, 3, 1, 2, 3), nrow = 3, byrow = TRUE)
+# women_preferences <- matrix(c(1, 2, 3, 1, 2, 3, 1, 2, 3), nrow = 3, byrow = TRUE)
 
-matching <- gale_shapley(men_preferences, women_preferences)
-print(matching)
+# matching <- c(1, 2, 3)
+# is_stable <- check_stability(men_preferences, women_preferences, matching)
+# print(is_stable)
 
-is_stable <- check_stability(men_preferences, women_preferences, matching$Women)
-print(is_stable)
+
+
+source('test/service/test_stability_checking_algorithm.R')
+
+
+

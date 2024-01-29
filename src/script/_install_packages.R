@@ -17,6 +17,7 @@
 
 install.packages(
     c(  
+        'testthat',
         'devtools',
         'ggplot2',
         'janitor',
