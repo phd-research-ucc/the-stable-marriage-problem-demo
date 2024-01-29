@@ -16,6 +16,7 @@
 # Load Packages --------------------------------------------------------
 
 library(devtools)
+library(combinat)
 library(ggplot2)
 library(glue)
 library(janitor)

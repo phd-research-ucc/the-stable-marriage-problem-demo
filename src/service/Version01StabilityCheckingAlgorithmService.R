@@ -22,18 +22,14 @@ library(tidyverse)
 # Functions --------------------------------------------------------------------
 
 # Function to check if there is a blocking pair
-has_blocking_pair <- function(man_index, woman_index, matching, men_preferences, women_preferences) {
+has_blocking_pair <- function(man, woman, matching, women_preferences) {
   
-  current_woman <- matching[man]
-  current_man <- which(matching == woman)[1]
-
   man_index <- which(women_preferences[woman, ] == man)
+  current_man <- which(matching == woman)
   current_man_index <- which(women_preferences[woman, ] == current_man)
-
-  woman_index <- which(men_preferences[man, ] == woman)
-  current_woman_index <- which(men_preferences[man, ] == current_woman)
-
-  return(man_index < current_man_index && woman_index < current_woman_index)
+  return(
+    man_index < current_man_index
+  )
 }
 
 check_stability <- function(men_preferences, women_preferences, matching) {
@@ -43,8 +39,9 @@ check_stability <- function(men_preferences, women_preferences, matching) {
   # Check for blocking pairs in the matching
   for (m in 1:n) {
     woman <- matching[m]
-    for (w in 1:which(man_preferences[m, ] == woman) ){
-      if (has_blocking_pair(m, w, matching, men_preferences, women_preferences)) {
+    for (w_index in 1:which(men_preferences[m, ] == woman) ){
+      w <- men_preferences[m, w_index]
+      if (has_blocking_pair(m, w, matching, women_preferences)) {
         return(FALSE)  # Matching is not stable
       }
     }
