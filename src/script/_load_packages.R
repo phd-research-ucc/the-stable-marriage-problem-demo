@@ -16,6 +16,7 @@
 # Load Packages --------------------------------------------------------
 
 library(devtools)
+library(digest)
 library(combinat)
 library(ggplot2)
 library(glue)

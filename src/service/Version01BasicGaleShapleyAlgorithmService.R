@@ -36,7 +36,7 @@ is_better_option <- function(woman, current_man, women_matched, women_preference
 
 
 arrange_stable_marriages <- function(men_preferences, women_preferences) {
-  n <- nrow(men_preferences)
+  n <- dim(men_preferences)[1]
   
   # Initialize arrays to store matching information
   men_matched <- rep(NA, n)

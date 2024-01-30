@@ -19,6 +19,7 @@ install.packages(
     c(  
         'testthat',
         'combinat',
+        'digest',
         'devtools',
         'ggplot2',
         'janitor',
