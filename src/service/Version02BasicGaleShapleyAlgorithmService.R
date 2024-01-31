@@ -92,9 +92,13 @@ arrange_stable_marriages <- function(men_preferences, women_preferences) {
   end_time <- Sys.time()
   d <- (end_time - start_time) / counter 
   # Return the final matching with the solution metric.
-  return(men_matched, d, count, Re, Ch, Pr)
+  return( list(men_matched, counter, d, Re, Ch, Pr) )
 }
 
 
 
-source('test/service/test_stable_marriage_algorithm.R')
+
+# Tests ---------------------------------------------------------------
+
+
+source('test/service/test_stable_marriage_algorithm_with_metrics.R')

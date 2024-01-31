@@ -58,12 +58,6 @@ arrange_stable_marriages <- function(men_preferences, women_preferences) {
     preferred_woman <- men_preferences[current_man, preferred_woman_index]
     proposed[current_man, preferred_woman_index] <- TRUE
     
-    # print(paste0('match: ', current_man, '-', preferred_woman))
-    # print(paste0('m: ', men_matched))
-    # print(paste0('w: ', women_matched))
-    # print(proposed)
-    # print(paste0('counter: ', counter))
-    
     if ( is.na(women_matched[preferred_woman]) ) {
       women_matched[preferred_woman] <- current_man
       men_matched[current_man] <- preferred_woman
@@ -87,13 +81,8 @@ arrange_stable_marriages <- function(men_preferences, women_preferences) {
   return(men_matched)
 }
 
-# # Example usage
-# men_preferences <- matrix(c(2, 3, 1, 1, 3, 2, 3, 2, 1), nrow = 3, byrow = TRUE)
-# women_preferences <- matrix(c(1, 2, 3, 2, 3, 1, 1, 2, 3), nrow = 3, byrow = TRUE)
-# 
-# result <- arrange_stable_marriages(men_preferences, women_preferences)
-# print(result)
 
 
+# Tests --------------------------------------------------------------
 
 source('test/service/test_stable_marriage_algorithm.R')
