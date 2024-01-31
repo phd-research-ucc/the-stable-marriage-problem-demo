@@ -73,7 +73,7 @@ actual_result_03 = arrange_stable_marriages(
 expect_result_03 = c(3, 1, 2)
 
 test_that(
-  ' A basic test of the stable marriage algorithm - two pairs.', 
+  ' A basic test of the stable marriage algorithm - three pairs.', 
   {
     expect_equal(actual_result_01, expect_result_01)
     expect_equal(actual_result_02, expect_result_02)

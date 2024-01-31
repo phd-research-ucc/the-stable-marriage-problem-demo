@@ -59,7 +59,7 @@ actual_result_03F = check_stability(
 )
 
 test_that(
-  ' A basic test of the stable marriage algorithm - two pairs.', 
+  ' A basic test of the stability checking algorithm - two pairs.', 
   {
     expect_equal(actual_result_01T, TRUE)
     expect_equal(actual_result_01F, FALSE)
@@ -113,7 +113,7 @@ actual_result_03F = check_stability(
 )
 
 test_that(
-  ' A basic test of the stable marriage algorithm - two pairs.', 
+  ' A basic test of the stability checking algorithm - three pairs.', 
   {
     expect_equal(actual_result_01T, TRUE)
     expect_equal(actual_result_01F, FALSE)
